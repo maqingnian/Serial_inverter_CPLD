@@ -1,0 +1,2 @@
+# Serial_inverter_CPLD
+主控制器SCBV3.0在串联逆变模式下CPLD的程序
