@@ -7,13 +7,13 @@ module	signal_filter
 	
 	sin,
 	sout,
-	timer		// 600ns
+	timer_600n		// 600ns
 );
 
 input			clk;
 input			rst;
 input			sin;
-input	[7:0]	timer;
+input	[7:0]		timer_600n;
 output			sout;
 
 reg		[7:0]	cc;
@@ -21,8 +21,8 @@ reg		[7:0]	cc_n;
 reg		[1:0]	sin_edge;
 reg		[1:0]	last_edge;
 reg		[1:0]	last_edge_n;
-reg				sout;
-reg				sout_n;
+reg			sout;
+reg			sout_n;
 
 parameter		FILTER_TIME	= 8'd200;		// 200 * 0.6us = 120us
 
@@ -64,7 +64,7 @@ end
 always @ (*)
 begin
 	if(sin_edge == 2'b01 || sin_edge == 2'b10)
-		cc_n = timer + FILTER_TIME;
+		cc_n = timer_600n + FILTER_TIME;
 	else
 		cc_n = cc;
 end
@@ -80,7 +80,7 @@ end
 
 always @ (*)
 begin
-	if(timer == cc)
+	if(timer_600n == cc)
 	begin
 		if(last_edge == 2'b01)
 			sout_n = 1'b1;
